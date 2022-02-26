@@ -42,10 +42,11 @@ import IconBody from "../components/icons/IconBody.vue";
 import { useRoute } from "vue-router";
 import { GeckoCompositor } from "@/composition/gecko-compositor";
 import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
+import { defineComponent } from "vue";
 
 const facade = GeckoCompositor.getFacade();
 
-export default {
+export default defineComponent({
   components: {
     CallHeadline,
     CallLine,
@@ -58,7 +59,7 @@ export default {
       .then((it) => this.metadata = it)
       .catch((err) => console.log(err))
   },
-  data() {
+  setup() {
     return {
       loading: true,
       metadata: null as GeckoMetadata | null
@@ -81,7 +82,7 @@ export default {
       return await facade.getMetadata(query)
     }
   }
-};
+});
 </script>
 
 <style scoped>
