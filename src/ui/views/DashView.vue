@@ -1,27 +1,33 @@
 <template>
-  <div class="dash-parent">
+  <div class="dash-parent" v-if="metadata != null">
     <CallHeadline>
-      <template #code>200</template>
-      <template #method>POST</template>
-      <template #domain>foo.bardoo.com</template>
-      <template #fragment>/v1/foo/bar</template>
+      <template #code>{{ metadata.response.code }}</template>
+      <template #method>{{ metadata.request.method }}</template>
+      <template #domain>Domain</template>
+      <template #fragment>{{ metadata.request.url }}</template>
     </CallHeadline>
     <CallLine>
-      <template #request>Authorization: Bearer</template>
-      <template #response>X-Content-Foo: waves</template>
-      <template #icon><IconHeaders /></template>
+      <template #request>{{ metadata.request.headers }}</template>
+      <template #response>{{ metadata.response.headers }}</template>
+      <template #icon>
+        <IconHeaders />
+      </template>
       <template #name>Headers</template>
     </CallLine>
     <CallLine>
-      <template #request>application/json</template>
-      <template #response>null</template>
-      <template #icon><IconContentType /></template>
+      <template #request>{{ metadata.request.contentType }}</template>
+      <template #response>{{ metadata.response.contentType }}</template>
+      <template #icon>
+        <IconContentType />
+      </template>
       <template #name>Content Type</template>
     </CallLine>
     <CallLine>
-      <template #request>{ "foo": 1, "barfoo": "foo" }</template>
-      <template #response>No content</template>
-      <template #icon><IconBody /></template>
+      <template #request>{{ metadata.request.body ?? "No Content" }}</template>
+      <template #response>{{ metadata.response.body ?? "No Content" }}</template>
+      <template #icon>
+        <IconBody />
+      </template>
       <template #name>Body</template>
     </CallLine>
   </div>
@@ -33,6 +39,12 @@ import CallLine from "../components/CallLine.vue";
 import IconHeaders from "../components/icons/IconHeaders.vue";
 import IconContentType from "../components/icons/IconContentType.vue";
 import IconBody from "../components/icons/IconBody.vue";
+import { useRoute } from "vue-router";
+import { GeckoCompositor } from "@/composition/gecko-compositor";
+import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
+
+const facade = GeckoCompositor.getFacade();
+
 export default {
   components: {
     CallHeadline,
@@ -41,8 +53,33 @@ export default {
     IconContentType,
     IconBody,
   },
-  created() {
-      
+  mounted() {
+    this.getMetadata()
+      .then((it) => this.metadata = it)
+      .catch((err) => console.log(err))
+  },
+  data() {
+    return {
+      loading: true,
+      metadata: null as GeckoMetadata | null
+    }
+  },
+  methods: {
+    getQuery(): string | null {
+      const route = useRoute()
+      const query = route.query["q"]
+      if (query == null || query === undefined) {
+        return null
+      }
+      return query.toString()
+    },
+    async getMetadata(): Promise<GeckoMetadata> {
+      const query = this.getQuery()
+      if (query == null) {
+        throw new Error("Missing query parameter")
+      }
+      return await facade.getMetadata(query)
+    }
   }
 };
 </script>

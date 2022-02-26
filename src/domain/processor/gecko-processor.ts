@@ -1,3 +1,5 @@
 export interface GeckoProcessor {
-    parse(input: string): string
+
+    parse(input: string): Promise<string>
+
 }

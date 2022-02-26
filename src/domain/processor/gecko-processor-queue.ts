@@ -8,13 +8,25 @@ export class GeckoProcessorQueue implements GeckoProcessor {
         this.processors = processors;
     }
 
-    parse(input: string): string {
+    async parse(input: string): Promise<string> {
         let output = input;
-        for (let index = 0; index < this.processors.length; index++) {
-            const processor = this.processors[index];
-            output = processor.parse(output);
+        for await (const processor of this.processors) {
+            output = await processor.parse(output);
         }
         return output;
     }
 
+}
+
+export class GeckoLogging implements GeckoProcessor {
+
+    parse(input: string): Promise<string> {
+        console.log(input)
+        return promiseOf(input);
+    }
+
+}
+
+function promiseOf<type>(argument: type): Promise<type> {
+    return new Promise((resolve) => resolve(argument))
 }
