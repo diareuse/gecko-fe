@@ -18,23 +18,33 @@
       <template #name>Headers</template>
     </CallLine>
     <CallLine>
-      <template #request>{{ metadata.request.contentType }}</template>
-      <template #response>{{ metadata.response.contentType }}</template>
+      <template #request>
+        <pre>{{ metadata.request.contentType }}</pre>
+      </template>
+      <template #response>
+        <pre>{{ metadata.response.contentType }}</pre>
+      </template>
       <template #icon>
         <IconContentType />
       </template>
       <template #name>Content Type</template>
     </CallLine>
     <CallLine>
-      <template #request>{{ metadata.request.body ?? "No Content" }}</template>
-      <template #response>{{ metadata.response.body ?? "No Content" }}</template>
+      <template #request>
+        <pre>{{ metadata.request.body ?? "No Content" }}</pre>
+      </template>
+      <template #response>
+        <pre>{{ metadata.response.body ?? "No Content" }}</pre>
+      </template>
       <template #icon>
         <IconBody />
       </template>
       <template #name>Body</template>
     </CallLine>
   </div>
-  <div v-if="metadata == null">Invalid data</div>
+  <div v-if="metadata == null">
+    <AppendBlock />
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,6 +57,7 @@ import { useRoute } from "vue-router";
 import { GeckoCompositor } from "@/composition/gecko-compositor";
 import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
 import { defineComponent, ref } from "vue";
+import AppendBlock from "../components/AppendBlock.vue";
 
 const facade = GeckoCompositor.getFacade();
 
@@ -57,6 +68,7 @@ export default defineComponent({
     IconHeaders,
     IconContentType,
     IconBody,
+    AppendBlock
   },
   created() {
     this.getMetadata()
