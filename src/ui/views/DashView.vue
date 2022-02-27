@@ -31,10 +31,10 @@
     </CallLine>
     <CallLine>
       <template #request>
-        <pre>{{ metadata.request.body ?? "No Content" }}</pre>
+        <span v-html="prettyJSON(takeUnlessBlank(metadata.request.body) ?? 'No content')"></span>
       </template>
       <template #response>
-        <pre>{{ metadata.response.body ?? "No Content" }}</pre>
+        <pre v-html="prettyJSON(takeUnlessBlank(metadata.response.body) ?? 'No content')"></pre>
       </template>
       <template #icon>
         <IconBody />
@@ -98,12 +98,47 @@ export default defineComponent({
         throw new Error("Missing query parameter")
       }
       return await facade.getMetadata(query)
+    },
+    prettyJSON(json: string | null) {
+      if (json) {
+        try {
+          json = JSON.parse(json)
+        } catch (err) {
+          return json
+        }
+      } else {
+        return json
+      }
+      json = JSON.stringify(json, undefined, 2);
+      json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+      return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+          if (/:$/.test(match)) {
+            cls = 'key';
+          } else {
+            cls = 'string';
+          }
+        } else if (/true|false/.test(match)) {
+          cls = 'boolean';
+        } else if (/null/.test(match)) {
+          cls = 'null';
+        } else if (/\d+.?\d+/.test(match)) {
+          cls = 'number'
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+      });
+    },
+    takeUnlessBlank(item: string | null): string | null {
+      if (!item) return null
+      if (item.replace(RegExp("\w"), "").length == 0) return null
+      return item as string
     }
   }
 });
 </script>
 
-<style scoped>
+<style>
 .dash-parent {
   width: 100%;
 }
@@ -114,5 +149,20 @@ pre {
 }
 pre::-webkit-scrollbar {
   display: none;
+}
+.key {
+  color: var(--color-text);
+}
+.string {
+  color: rgb(0, 182, 24);
+}
+.boolean {
+  color: rgb(255, 208, 0);
+}
+.null {
+  color: red;
+}
+.number {
+  color: rgb(0, 140, 255);
 }
 </style>
