@@ -53,4 +53,18 @@ export class MetadataAdapterDefault implements MetadataAdapter {
         return Number.parseInt(value)
     }
 
+    // ---
+
+    parse(array: Uint8Array): Promise<string> {
+        return new Promise((resolve) => {
+            var bb = new Blob([array]);
+            var f = new FileReader();
+            f.onload = function (e) {
+                resolve(e.target?.result?.toString() ?? "");
+            };
+
+            f.readAsText(bb);
+        })
+    }
+
 }

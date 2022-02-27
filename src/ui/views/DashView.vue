@@ -3,12 +3,15 @@
     <CallHeadline>
       <template #code>{{ metadata.response.code }}</template>
       <template #method>{{ metadata.request.method }}</template>
-      <template #domain>Domain</template>
       <template #fragment>{{ metadata.request.url }}</template>
     </CallHeadline>
     <CallLine>
-      <template #request>{{ metadata.request.headers }}</template>
-      <template #response>{{ metadata.response.headers }}</template>
+      <template #request>
+        <pre>{{ metadata.request.headers.join('\n') }}</pre>
+      </template>
+      <template #response>
+        <pre>{{ metadata.response.headers.join('\n') }}</pre>
+      </template>
       <template #icon>
         <IconHeaders />
       </template>
@@ -31,6 +34,7 @@
       <template #name>Body</template>
     </CallLine>
   </div>
+  <div v-if="metadata == null">Invalid data</div>
 </template>
 
 <script lang="ts">
@@ -42,7 +46,7 @@ import IconBody from "../components/icons/IconBody.vue";
 import { useRoute } from "vue-router";
 import { GeckoCompositor } from "@/composition/gecko-compositor";
 import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 const facade = GeckoCompositor.getFacade();
 
@@ -54,15 +58,17 @@ export default defineComponent({
     IconContentType,
     IconBody,
   },
-  mounted() {
+  created() {
     this.getMetadata()
-      .then((it) => this.metadata = it)
+      .then((it) => {
+        this.metadata = it
+      })
       .catch((err) => console.log(err))
   },
   setup() {
+    const metadata = ref(null as GeckoMetadata | null)
     return {
-      loading: true,
-      metadata: null as GeckoMetadata | null
+      metadata
     }
   },
   methods: {
@@ -88,5 +94,8 @@ export default defineComponent({
 <style scoped>
 .dash-parent {
   width: 100%;
+}
+pre {
+  overflow-x: scroll;
 }
 </style>

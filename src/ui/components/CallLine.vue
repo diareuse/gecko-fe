@@ -4,8 +4,12 @@
       <slot name="request"></slot>
     </div>
     <div class="line-segment-metadata">
-      <span class="line-icon"><slot name="icon"></slot></span>
-      <span class="line-name"><slot name="name"></slot></span>
+      <span class="line-icon">
+        <slot name="icon"></slot>
+      </span>
+      <span class="line-name">
+        <slot name="name"></slot>
+      </span>
     </div>
     <div class="line-segment-monospaced line-segment-content">
       <slot name="response"></slot>
@@ -21,18 +25,18 @@ export default {};
 .line-parent {
   display: flex;
   margin-top: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: flex-start;
+  flex-flow: row;
+  gap: 1rem;
 }
 .line-segment-content {
   flex-grow: 1;
   flex-basis: 0;
   background: #2d2d2d;
-  border-radius: 4px;
-  padding: 4px 8px;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   color: white;
-  margin-top: 8px;
+  min-width: 0;
 }
 .line-segment-content:first-of-type {
   margin-right: 1rem;
@@ -52,9 +56,9 @@ export default {};
   margin: 0 auto;
 }
 .line-icon {
-  padding: 8px;
-  border-width: 3px;
-  border-radius: 8px;
+  padding: 0.5rem;
+  border-width: 0.25rem;
+  border-radius: 1rem;
   border-color: #2d2d2d;
   border-style: solid;
 }

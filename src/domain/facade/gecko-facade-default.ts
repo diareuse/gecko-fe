@@ -1,6 +1,7 @@
 import type { MetadataAdapter } from "../adapter/metadata-adapter";
 import type { GeckoMetadata } from "../model/gecko-metadata";
 import type { GeckoProcessor } from "../processor/gecko-processor";
+import { promiseOf } from "../tool/promise";
 import type { GeckoFacade } from "./gecko-facade";
 
 export class GeckoFacadeDefault implements GeckoFacade {
@@ -17,7 +18,8 @@ export class GeckoFacadeDefault implements GeckoFacade {
     }
 
     async getMetadata(input: string): Promise<GeckoMetadata> {
-        const value = await this.processor.parse(input)
+        const rawValue = await this.processor.parse(input)
+        const value = await this.adapter.parse(rawValue)
         const metadata = this.adapter.adapt(value)
         return metadata;
     }

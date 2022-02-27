@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@zip.js/zip.js": "^2.4.5",
+    "base64-js": "^1.5.1",
     "pako": "^2.0.4",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12"
