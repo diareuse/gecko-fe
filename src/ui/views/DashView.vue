@@ -86,7 +86,7 @@ export default defineComponent({
   methods: {
     getQuery(): string | null {
       const route = useRoute()
-      const query = route.params.baseData
+      const query = route.query.q
       if (query == null || query === undefined) {
         return null
       }
