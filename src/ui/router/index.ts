@@ -5,7 +5,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/:baseData",
+      path: '/:params',
+      redirect: to => ({
+        name: 'dash',
+        params: { baseData: to.params.params }
+      })
+    },
+    {
+      path: "/gecko/:baseData",
       name: "dash",
       component: DashView,
     }
