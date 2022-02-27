@@ -1,6 +1,6 @@
 <template>
   <div class="dash-parent" v-if="metadata != null">
-    <CallHeadline>
+    <CallHeadline :response-code="metadata.response.code" :request-method="metadata.request.method">
       <template #code>{{ metadata.response.code }}</template>
       <template #method>{{ metadata.request.method }}</template>
       <template #fragment>{{ metadata.request.url }}</template>
