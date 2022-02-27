@@ -97,5 +97,10 @@ export default defineComponent({
 }
 pre {
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+pre::-webkit-scrollbar {
+  display: none;
 }
 </style>
