@@ -50,14 +50,14 @@ export default defineComponent({
 .headline-code {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: white;
+  color: black;
   margin-right: 0.5rem;
   font-weight: 800;
 }
 .headline-method {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: white;
+  color: black;
   margin-right: 0.5rem;
   font-weight: 800;
 }

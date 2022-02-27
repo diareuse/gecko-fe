@@ -32,10 +32,10 @@ export default {};
 .line-segment-content {
   flex-grow: 1;
   flex-basis: 0;
-  background: #2d2d2d;
+  background: var(--color-background-mute);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: white;
+  color: var(--color-text);
   min-width: 0;
 }
 .line-segment-content:first-of-type {
@@ -59,12 +59,12 @@ export default {};
   padding: 0.5rem;
   border-width: 0.25rem;
   border-radius: 1rem;
-  border-color: #2d2d2d;
+  border-color: var(--color-background-mute);
   border-style: solid;
 }
 span {
   line-height: 1;
-  color: white;
+  color: var(--color-text);
 }
 .line-name {
   margin-top: 0.5rem;
