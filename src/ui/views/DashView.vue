@@ -31,7 +31,7 @@
     </CallLine>
     <CallLine>
       <template #request>
-        <span v-html="prettyJSON(takeUnlessBlank(metadata.request.body) ?? 'No content')"></span>
+        <pre v-html="prettyJSON(takeUnlessBlank(metadata.request.body) ?? 'No content')"></pre>
       </template>
       <template #response>
         <pre v-html="prettyJSON(takeUnlessBlank(metadata.response.body) ?? 'No content')"></pre>
