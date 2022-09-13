@@ -1,7 +1,7 @@
 import type { GeckoMetadata } from "../model/gecko-metadata";
 import type { StoredMetadata } from "../model/stored-metadata";
 import type MetadataDao from "../persistence/dao-metadata";
-import type { GeckoFacade } from "./gecko-facade";
+import type { GeckoFacade, MetadataListProps } from "./gecko-facade";
 
 export default class GeckoFacadeSaving implements GeckoFacade {
 
@@ -30,8 +30,8 @@ export default class GeckoFacadeSaving implements GeckoFacade {
         return await this.facade.getMetadata(input);
     }
 
-    async getMetadataList(offset: number = 0, limit: number = 10): Promise<GeckoMetadata[]> {
-        const items = await this.storage.get(offset, limit)
+    async getMetadataList(props: MetadataListProps): Promise<GeckoMetadata[]> {
+        const items = await this.storage.get(props.offset ?? 0, props.limit ?? 10)
         return Promise.all(items.map((it) => this.facade.getMetadata(it.metadata)))
     }
 
