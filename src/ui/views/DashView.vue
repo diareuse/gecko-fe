@@ -138,30 +138,37 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .dash-parent {
   width: 100%;
 }
+
 pre {
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 pre::-webkit-scrollbar {
   display: none;
 }
+
 .key {
   color: var(--color-text);
 }
+
 .string {
   color: rgb(0, 182, 24);
 }
+
 .boolean {
   color: rgb(255, 208, 0);
 }
+
 .null {
   color: red;
 }
+
 .number {
   color: rgb(0, 140, 255);
 }

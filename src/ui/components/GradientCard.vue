@@ -70,7 +70,6 @@ const codeColor = computed(() => {
 .g-content {
     border-radius: 16px;
     background: var(--color-background);
-    padding: 16px;
     margin-top: 8px;
 }
 
