@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "base64-js": "^1.5.1",
+    "idb": "^7.0.2",
     "pako": "^2.0.4",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"

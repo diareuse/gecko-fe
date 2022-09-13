@@ -2,8 +2,11 @@ import type { MetadataAdapter } from "@/domain/adapter/metadata-adapter";
 import { MetadataAdapterDefault } from "@/domain/adapter/metadata-adapter-default";
 import type { GeckoFacade } from "@/domain/facade/gecko-facade";
 import { GeckoFacadeDefault } from "@/domain/facade/gecko-facade-default";
+import GeckoFacadeSaving from "@/domain/facade/gecko-facade-saving";
 import type { GeckoProcessorFactory } from "@/domain/factory/gecko-processor-factory";
 import { GeckoProcessorFactoryDefault } from "@/domain/factory/gecko-processor-factory-default";
+import type MetadataDao from "@/domain/persistence/dao-metadata";
+import Database from "@/domain/persistence/database";
 import type { GeckoProcessor } from "@/domain/processor/gecko-processor";
 
 export class GeckoCompositor {
@@ -18,7 +21,18 @@ export class GeckoCompositor {
     }
 
     public static getFacade(): GeckoFacade {
-        return new GeckoFacadeDefault(this.getProcessor(), this.getAdapter())
+        let facade: GeckoFacade
+        facade = new GeckoFacadeDefault(this.getProcessor(), this.getAdapter())
+        facade = new GeckoFacadeSaving(facade, this.getMetadataDao())
+        return facade
+    }
+
+    static getMetadataDao(): MetadataDao {
+        return this.getDatabase().metadata()
+    }
+
+    static getDatabase(): Database {
+        return new Database()
     }
 
 }
