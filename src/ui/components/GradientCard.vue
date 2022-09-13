@@ -42,10 +42,10 @@ const methodColor = computed(() => {
 })
 
 const codeColor = computed(() => {
-    if (props.code > 200 && props.code <= 299) return "#B9F6CA"
-    else if (props.code > 300 && props.code <= 399) return "#84FFFF"
-    else if (props.code > 400 && props.code <= 499) return "#FFE57F"
-    else if (props.code > 500 && props.code <= 599) return "#FF8A80"
+    if (props.code >= 200 && props.code <= 299) return "#B9F6CA"
+    else if (props.code >= 300 && props.code <= 399) return "#84FFFF"
+    else if (props.code >= 400 && props.code <= 499) return "#FFE57F"
+    else if (props.code >= 500 && props.code <= 599) return "#FF8A80"
     else return "black"
 })
 </script>
