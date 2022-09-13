@@ -1,9 +1,33 @@
 <template>
-
+    <div>
+        <GradientCard v-for="item in items" v-bind:key="item.request.url" :method="item.request.method"
+            :code="item.response.code">
+            {{item.request.url}}
+        </GradientCard>
+    </div>
 </template>
 
 <script lang="ts" setup>
+import { GeckoCompositor } from '@/composition/gecko-compositor';
+import type { GeckoMetadata } from '@/domain/model/gecko-metadata';
+import { onMounted, ref } from 'vue';
+import GradientCard from '../components/GradientCard.vue';
 
+const facade = GeckoCompositor.getFacade()
+const items = ref([] as GeckoMetadata[])
+
+async function loadMore(): Promise<void> {
+    const list = await facade.getMetadataList({ offset: items.value.length })
+    items.value = [...items.value, ...list]
+}
+
+async function refresh(): Promise<void> {
+    items.value = await facade.getMetadataList({})
+}
+
+onMounted(() => {
+    refresh()
+})
 </script>
 
 <style scoped>
