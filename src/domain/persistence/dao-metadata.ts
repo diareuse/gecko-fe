@@ -1,4 +1,4 @@
-import type { IDBPDatabase } from "idb";
+import type { IDBPCursorWithValue } from "idb";
 import type { StoredMetadata } from "../model/stored-metadata";
 import Dao, { type DatabaseFactory } from "./dao";
 
@@ -22,22 +22,21 @@ export default class MetadataDao extends Dao {
 
     async get(offset: number, limit: number): Promise<StoredMetadata[]> {
         return await this.inReadTransaction(async (store) => {
-            const cursor = await store.openCursor()
-            cursor?.advance(offset)
-            if (!cursor) {
-                throw "Cannot open cursor!"
-            }
+            let cursor = await store.openCursor()
+            if (cursor && offset > 0)
+                cursor = await cursor.advance(offset)
 
             const items: StoredMetadata[] = []
             let count = 0
-            let item: StoredMetadata | undefined = undefined
-            do {
-                item = (await cursor.continue())?.value
+            let item: StoredMetadata | undefined = cursor?.value
+            while (item && count < limit) {
                 if (item) {
                     items.push(item)
                     count++
                 }
-            } while (item && count < limit)
+                cursor = await cursor?.continue() ?? null
+                item = cursor?.value
+            }
 
             return items
         })
