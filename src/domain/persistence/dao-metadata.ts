@@ -13,7 +13,7 @@ export default class MetadataDao extends Dao {
     }
 
     async add(model: StoredMetadata): Promise<void> {
-        await this.inReadWriteTransaction((store) => store.add(model))
+        await this.inReadWriteTransaction((store) => store.put(model))
     }
 
     async remove(key: string): Promise<void> {

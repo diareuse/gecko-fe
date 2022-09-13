@@ -17,8 +17,13 @@ export default class GeckoFacadeSaving implements GeckoFacade {
     }
 
     async getMetadata(input: string): Promise<GeckoMetadata> {
-        let metadata: StoredMetadata = {
-            id: crypto.randomUUID(),
+        const encoder = new TextEncoder()
+        const data = encoder.encode(input)
+        const hash = await crypto.subtle.digest("SHA-1", data)
+        const hashArray = Array.from(new Uint8Array(hash))
+        const hashHex = hashArray.map(b => b.toString(16)).join('')
+        const metadata: StoredMetadata = {
+            id: hashHex,
             metadata: input
         }
         await this.storage.add(metadata)
