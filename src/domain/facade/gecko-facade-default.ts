@@ -24,4 +24,8 @@ export class GeckoFacadeDefault implements GeckoFacade {
         return metadata;
     }
 
+    async getMetadataList(offset: number | undefined, limit: number | undefined): Promise<GeckoMetadata[]> {
+        return [] // no-op
+    }
+
 }

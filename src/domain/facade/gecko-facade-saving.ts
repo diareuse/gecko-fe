@@ -25,4 +25,9 @@ export default class GeckoFacadeSaving implements GeckoFacade {
         return await this.facade.getMetadata(input);
     }
 
+    async getMetadataList(offset: number = 0, limit: number = 10): Promise<GeckoMetadata[]> {
+        const items = await this.storage.get(offset, limit)
+        return Promise.all(items.map((it) => this.facade.getMetadata(it.metadata)))
+    }
+
 }
