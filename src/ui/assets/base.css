@@ -86,3 +86,23 @@ strong {
 .clickable {
   cursor: pointer;
 }
+
+.key {
+  color: var(--color-text);
+}
+
+.string {
+  color: #90ee02;
+}
+
+.boolean {
+  color: #ff9e22;
+}
+
+.null {
+  color: #ee0290;
+}
+
+.number {
+  color: #ee6002;
+}
