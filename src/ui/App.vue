@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style>
 @import "@/ui/assets/base.css";
+@import "@/ui/assets/typography.css";
 
 #app {
   max-width: 1280px;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=JetBrains+Mono:wght@500&display=swap');
+
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
@@ -68,18 +68,6 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
-  line-height: 1.6;
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-pre {
-  font-family: 'JetBrains Mono', monospace;
 }
 
 strong {

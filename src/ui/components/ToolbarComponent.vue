@@ -35,10 +35,6 @@ img {
     height: 48px;
 }
 
-h1 {
-    font-weight: 800;
-}
-
 .g-accent-bg::after {
     content: '';
     width: calc(100% + 8px);

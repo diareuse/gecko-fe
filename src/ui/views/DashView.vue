@@ -7,15 +7,15 @@
         <h6>What happens to your requests?</h6>
         <p>We need the app to be secure and trustworthy. Therefore we never save the data you put in anywhere in the
           cloud.
-          It's <strong>always</strong> stored in your own device, in this case - browser, and/or empherically processed.
-          Leaving no trace of your home server or data anywhere. <sub>Unless like GitHub logs the urls, in that case,
-            yeah
-            it's their fault.</sub></p>
+          It's <strong>always</strong> stored in your own device, in this case - browser, and/or ephemerally processed.
+          Leaving no trace of your home server or data anywhere.
+          <sub>Unless like GitHub logs the urls, in that case, yeah it's their fault.</sub>
+        </p>
         <h6>What's the process?</h6>
         <p>
           All entries are processed accordingly:
         <ul>
-          <li>Empherically inspect the lines you put into this text area</li>
+          <li>Inspect the lines you put into this text area</li>
           <li>Merge lines which should be merged</li>
           <li>Try to parse the data</li>
           <li>If successful, save the data into your browser</li>
@@ -42,6 +42,7 @@ import ToolbarComponent from "../components/ToolbarComponent.vue";
 
 const facade = GeckoCompositor.getFacade()
 const processor = GeckoCompositor.getPartProcessor()
+const router = useRouter()
 
 const content = ref('')
 const error = ref(null as string | null)
@@ -53,7 +54,7 @@ async function onDone(): Promise<void> {
   Promise
     .all(parts.value.map((it) => facade.getMetadata(it)))
     .catch(() => error.value = "There were errors with your input")
-    .then(() => useRouter().push("/requests"))
+    .then(() => router.push("/requests"))
 }
 
 async function findQuery(): Promise<string> {
@@ -75,8 +76,11 @@ onMounted(() => {
 
 <style scoped>
 textarea {
-  width: 100%;
-  min-height: 300px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  resize: none;
   background: var(--color-background);
   color: var(--color-text);
   border-radius: 16px;
@@ -149,5 +153,14 @@ button#g-positive:hover {
   line-height: 14px;
   bottom: calc(-8px - (14px / 2));
   right: calc(32px - 6px);
+}
+
+h6:first-of-type {
+  padding-top: 0;
+}
+
+h6 {
+  padding-top: 16px;
+  padding-bottom: 8px;
 }
 </style>
