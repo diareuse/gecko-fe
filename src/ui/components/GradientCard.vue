@@ -75,11 +75,13 @@ const codeColor = computed(() => {
 
 .g-method {
     font-weight: 800;
-    mix-blend-mode: difference;
+    color: black;
+    mix-blend-mode: var(--blend-mode);
 }
 
 .g-code {
     font-weight: 800;
-    mix-blend-mode: difference;
+    color: black;
+    mix-blend-mode: var(--blend-mode);
 }
 </style>

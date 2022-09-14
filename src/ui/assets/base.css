@@ -13,6 +13,8 @@
   --color-surface: #fff;
   --color-on-surface: #000;
   --color-surface-variant: rgb(243, 243, 243);
+
+  --blend-mode: hard-light;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +33,8 @@
     --color-surface: rgb(25, 25, 25);
     --color-on-surface: white;
     --color-surface-variant: rgb(45, 45, 45);
+
+    --blend-mode: hard-light;
   }
 }
 
