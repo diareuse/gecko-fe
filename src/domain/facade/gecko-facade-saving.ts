@@ -24,7 +24,8 @@ export default class GeckoFacadeSaving implements GeckoFacade {
         const hashHex = hashArray.map(b => b.toString(16)).join('')
         const metadata: StoredMetadata = {
             id: hashHex,
-            metadata: input
+            metadata: input,
+            date: new Date().getTime()
         }
         await this.storage.add(metadata)
         return await this.facade.getMetadata(input);

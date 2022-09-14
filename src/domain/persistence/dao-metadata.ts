@@ -1,4 +1,3 @@
-import type { IDBPCursorWithValue } from "idb";
 import type { StoredMetadata } from "../model/stored-metadata";
 import Dao, { type DatabaseFactory } from "./dao";
 
@@ -22,7 +21,8 @@ export default class MetadataDao extends Dao {
 
     async get(offset: number, limit: number): Promise<StoredMetadata[]> {
         return await this.inReadTransaction(async (store) => {
-            let cursor = await store.openCursor()
+            const index = store.index("idx-date")
+            let cursor = await index.openCursor(null, "prev")
             if (cursor && offset > 0)
                 cursor = await cursor.advance(offset)
 

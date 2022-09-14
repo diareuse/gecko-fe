@@ -18,7 +18,8 @@ export default class Database {
         }
         this.instance = await openDB("db", 1, {
             upgrade(database) {
-                database.createObjectStore(MetadataDao.Name, { keyPath: "id" })
+                const metadata = database.createObjectStore(MetadataDao.Name, { keyPath: "id" })
+                metadata.createIndex("idx-date", "date")
             }
         })
         return this.getInstance()
