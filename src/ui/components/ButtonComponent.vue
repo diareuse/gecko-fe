@@ -26,6 +26,7 @@ a {
     border-radius: 1000px;
     background-color: var(--color-primary);
     color: var(--color-on-primary);
+    text-decoration: none;
 }
 
 a:disabled {

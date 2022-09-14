@@ -6,7 +6,13 @@
                 <RequestResponseBlock :metadata="item" :expanded="index == 0" />
             </GradientCard>
         </TransitionGroup>
-        <ButtonComponent title="Show More from History" @click="loadMore" v-if="!isDepleted" />
+        <div class="g-empty" v-if="items.length <= 0 && !isLoading">
+            <IconEmpty />
+            <h6>This looks empty 🤔</h6>
+            <p>You can start by clicking on links in logs or personal messages.<br>
+                Optionally you can enter links on the home page.</p>
+            <ButtonComponent title="Away we go!" href="/gecko/" />
+        </div>
     </div>
 </template>
 
@@ -18,10 +24,12 @@ import GradientCard from '../components/GradientCard.vue';
 import RequestResponseBlock from '../components/RequestResponseBlock.vue';
 import ToolbarComponent from '../components/ToolbarComponent.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
+import IconEmpty from '../components/icons/IconEmpty.vue';
 
 const facade = GeckoCompositor.getFacade()
 const items = ref([] as GeckoMetadata[])
 const isDepleted = ref(false)
+const isLoading = ref(true)
 
 async function loadMore(): Promise<void> {
     if (isDepleted.value) {
@@ -31,10 +39,12 @@ async function loadMore(): Promise<void> {
     const list = await facade.getMetadataList({ offset: items.value.length, limit: limit })
     items.value = [...items.value, ...list]
     isDepleted.value = list.length < limit
+    isLoading.value = false
 }
 
 async function refresh(): Promise<void> {
     items.value = await facade.getMetadataList({ limit: 1 })
+    isLoading.value = false
 }
 
 onMounted(() => {
@@ -74,5 +84,21 @@ onMounted(() => {
 .requests-leave-to {
     opacity: 0;
     transform: translateY(24px);
+}
+
+.g-empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.g-empty>* {
+    flex-wrap: wrap;
+    margin-top: 24px;
 }
 </style>
