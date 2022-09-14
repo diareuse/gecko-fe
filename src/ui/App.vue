@@ -5,11 +5,9 @@ import FooterComponent from "./components/FooterComponent.vue";
 </script>
 
 <template>
-  <div>
-    <ToolbarComponent />
-    <RouterView />
-    <FooterComponent />
-  </div>
+  <ToolbarComponent />
+  <RouterView id="g-content" />
+  <FooterComponent />
 </template>
 
 <style>
@@ -19,7 +17,16 @@ import FooterComponent from "./components/FooterComponent.vue";
 
 #app {
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+#g-content {
+  flex-grow: 1;
 }
 </style>
