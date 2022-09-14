@@ -1,0 +1,17 @@
+.g-flex-row-mobile {
+    flex-direction: row;
+}
+
+.g-visible-mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .g-flex-row-mobile {
+        flex-direction: column;
+    }
+
+    .g-visible-mobile {
+        display: initial;
+    }
+}

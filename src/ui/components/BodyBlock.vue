@@ -1,5 +1,7 @@
 <template>
     <div>
+        <h5 class="g-visible-mobile">{{title}}</h5>
+
         <div class="g-card">
             <p>Headers</p>
             <pre v-html="headers"></pre>
@@ -30,6 +32,10 @@ const props = defineProps({
     body: {
         type: String,
         required: true
+    },
+    title: {
+        type: String,
+        required: true
     }
 })
 </script>
@@ -55,7 +61,7 @@ const props = defineProps({
     border-radius: 10000px;
 }
 
-.g-card:first-child {
+.g-card:first-of-type {
     margin-top: 16px;
 }
 
@@ -69,5 +75,9 @@ pre {
 
 pre::-webkit-scrollbar {
     display: none;
+}
+
+h5 {
+    padding: 0 16px;
 }
 </style>

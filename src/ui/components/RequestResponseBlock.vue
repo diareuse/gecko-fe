@@ -6,12 +6,12 @@
             <IconExpand class="clickable animated" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
         </div>
         <Transition name="default">
-            <div class="g-container" v-if="isVisible">
-                <BodyBlock class="g-body" :headers="metadata.request.headers.join('\n')"
+            <div class="g-container g-flex-row-mobile" v-if="isVisible">
+                <BodyBlock class="g-body" title="Request" :headers="metadata.request.headers.join('\n')"
                     :content-type="metadata.request.contentType"
                     :body="prettyJson(takeUnlessBlank(metadata.request.body)) ?? 'No Content'" />
                 <div class="g-divider"></div>
-                <BodyBlock class="g-body" :headers="metadata.response.headers.join('\n')"
+                <BodyBlock class="g-body" title="Response" :headers="metadata.response.headers.join('\n')"
                     :content-type="metadata.response.contentType"
                     :body="prettyJson(takeUnlessBlank(metadata.response.body)) ?? 'No Content'" />
             </div>
@@ -94,7 +94,6 @@ const url = computed(() => {
 
 .g-container {
     display: flex;
-    flex-direction: row;
 }
 
 .g-container>.g-body {

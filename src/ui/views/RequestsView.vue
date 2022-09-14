@@ -46,6 +46,7 @@ onMounted(() => {
             loadMore()
         }
     }
+    window.onscroll.call()
 })
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ToolbarComponent />
-    <div class="g-columns">
+    <div class="g-columns g-flex-row-mobile">
       <div>
         <span class="g-label">Q/A</span>
         <h6>What happens to your requests?</h6>
@@ -106,7 +106,6 @@ textarea {
 
 .g-columns {
   display: flex;
-  flex-direction: row;
   align-content: flex-start;
   margin-top: 32px;
 }
@@ -148,5 +147,16 @@ h6:first-of-type {
 h6 {
   padding-top: 16px;
   padding-bottom: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .g-columns>div {
+    margin-right: 0;
+    margin-bottom: 32px;
+  }
+
+  .g-columns>div:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>
