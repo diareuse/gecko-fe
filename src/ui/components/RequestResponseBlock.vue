@@ -3,7 +3,7 @@
         <div class="g-action">
             <div class="g-url" v-html="url" />
             <div class="g-divider"></div>
-            <IconExpand class="clickable" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
+            <IconExpand class="clickable animated" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
         </div>
         <Transition name="default">
             <div class="g-container" v-if="isVisible">

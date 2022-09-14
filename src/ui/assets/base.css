@@ -106,3 +106,7 @@ strong {
 .number {
   color: #ee6002;
 }
+
+.animated {
+  transition: all .5s ease-in-out;
+}
