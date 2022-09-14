@@ -6,6 +6,10 @@
     display: none;
 }
 
+.g-invisible-mobile {
+    display: initial;
+}
+
 @media only screen and (max-width: 600px) {
     .g-flex-row-mobile {
         flex-direction: column;
@@ -13,5 +17,9 @@
 
     .g-visible-mobile {
         display: initial;
+    }
+
+    .g-invisible-mobile {
+        display: none;
     }
 }

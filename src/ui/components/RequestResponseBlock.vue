@@ -3,6 +3,7 @@
         <div class="g-action">
             <div class="g-url" v-html="url" />
             <div class="g-divider"></div>
+            <span class="g-invisible-mobile" v-if="date">{{date}}</span>
             <IconDelete class="clickable" @click="emits('delete')" />
             <IconExpand class="clickable animated" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
         </div>
@@ -90,6 +91,13 @@ const url = computed(() => {
     }
     return url.replace(results[1], `<strong>${results[1]}</strong>`)
 })
+
+const date = computed(() => {
+    const timestamp = props.metadata.date
+    if (!timestamp) return
+    const date = new Date(timestamp)
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
+})
 </script>
 
 <style scoped>
@@ -130,6 +138,10 @@ const url = computed(() => {
 
 .g-action>.g-divider {
     flex-grow: 1;
+}
+
+.g-action>span {
+    font-size: 11px;
 }
 
 .active {
