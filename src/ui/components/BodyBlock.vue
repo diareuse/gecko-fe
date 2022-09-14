@@ -1,17 +1,17 @@
 <template>
     <div>
         <div class="g-card">
-            <h3>Headers</h3>
+            <p>Headers</p>
             <pre v-html="headers"></pre>
         </div>
 
         <div class="g-card">
-            <h3>Content Type</h3>
+            <p>Content Type</p>
             <pre v-html="contentType"></pre>
         </div>
 
         <div class="g-card">
-            <h3>Body</h3>
+            <p>Body</p>
             <pre v-html="body"></pre>
         </div>
     </div>
@@ -38,19 +38,20 @@ const props = defineProps({
 .g-card {
     background-color: var(--color-surface-variant);
     border-radius: 12px;
-    padding: 16px;
+    padding: 24px;
     margin-bottom: 16px;
 }
 
-.g-card>h3 {
+.g-card>p {
     position: absolute;
     top: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
     background-color: var(--color-surface);
     padding: 4px 8px;
-    line-height: 16px;
-    margin-top: -10px;
+    line-height: 14px;
+    margin-top: calc(-14px/2 - 4px);
+    margin-left: -8px;
     border-radius: 10000px;
 }
 
