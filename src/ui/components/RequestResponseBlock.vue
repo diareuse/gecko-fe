@@ -23,18 +23,21 @@
 import BodyBlock from "./BodyBlock.vue";
 import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
 import type { PropType } from "vue";
-import { MetadataAdapterDefault } from "@/domain/adapter/metadata-adapter-default";
 import { computed, ref } from "@vue/reactivity";
-import IconBody from "./icons/IconBody.vue";
 import IconExpand from "./icons/IconExpand.vue";
 
-const isVisible = ref(false)
 const props = defineProps({
     metadata: {
         type: Object as PropType<GeckoMetadata>,
         required: true
+    },
+    expanded: {
+        type: Boolean,
+        required: false,
+        defaultValue: false
     }
 })
+const isVisible = ref(props.expanded)
 
 function prettyJson(json: string | null) {
     if (json) {
