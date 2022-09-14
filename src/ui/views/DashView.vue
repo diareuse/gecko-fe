@@ -27,7 +27,7 @@
         <span class="g-label">Paste Content Here!</span>
         <textarea v-model="content" id="append-input-box"></textarea>
         <p v-if="error">{{error}}</p>
-        <button id="g-positive" class="animated" @keyup.enter="onDone" v-on:click="onDone">Done!</button>
+        <ButtonComponent id="g-positive" title="Done!" @keyup.enter="onDone" v-on:click="onDone" />
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@ import { computed } from "@vue/reactivity";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ToolbarComponent from "../components/ToolbarComponent.vue";
+import ButtonComponent from "../components/ButtonComponent.vue";
 
 const facade = GeckoCompositor.getFacade()
 const processor = GeckoCompositor.getPartProcessor()
@@ -81,7 +82,7 @@ textarea {
   min-height: 100%;
   max-height: 100%;
   resize: none;
-  background: var(--color-surface-variant);
+  background: var(--color-surface);
   color: var(--color-on-surface);
   border-radius: 16px;
   border: solid transparent;
@@ -132,27 +133,10 @@ textarea {
   border-radius: 10000px;
 }
 
-button#g-positive {
+#g-positive {
   position: absolute;
-  bottom: -12px;
+  bottom: -16px;
   right: 32px;
-  padding: 6px 12px;
-  font-size: 12px;
-  line-height: 12px;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  border-radius: 1000px;
-  border: solid transparent;
-  cursor: pointer;
-  font-weight: 800;
-}
-
-button#g-positive:hover {
-  padding: 8px 16px;
-  font-size: 14px;
-  line-height: 14px;
-  bottom: calc(-8px - (14px / 2));
-  right: calc(32px - 6px);
 }
 
 h6:first-of-type {

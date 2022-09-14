@@ -34,7 +34,7 @@ const props = defineProps({
     expanded: {
         type: Boolean,
         required: false,
-        defaultValue: false
+        default: false
     }
 })
 const isVisible = ref(props.expanded)
