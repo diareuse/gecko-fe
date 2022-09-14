@@ -14,6 +14,7 @@ header {
     display: flex;
     width: 100%;
     border-radius: 16px;
+    margin-top: 48px;
     background-color: var(--color-background);
     padding: 16px;
     flex-direction: row;
