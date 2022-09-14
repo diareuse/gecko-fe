@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ToolbarComponent />
     <div class="g-columns g-flex-row-mobile">
       <div>
         <span class="g-label">Q/A</span>

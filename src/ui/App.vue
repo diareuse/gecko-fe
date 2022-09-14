@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+import ToolbarComponent from "./components/ToolbarComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 </script>
 
 <template>
-  <RouterView />
+  <div>
+    <ToolbarComponent />
+    <RouterView />
+    <FooterComponent />
+  </div>
 </template>
 
 <style>
@@ -14,8 +20,5 @@ import { RouterLink, RouterView } from "vue-router";
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
 }
 </style>

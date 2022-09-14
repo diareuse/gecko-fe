@@ -1,6 +1,5 @@
 <template>
     <div class="g-container">
-        <ToolbarComponent />
         <TransitionGroup name="requests" tag="div" class="g-rr-item">
             <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
                 :method="item.request.method" :code="item.response.code">
@@ -46,7 +45,7 @@ onMounted(() => {
             loadMore()
         }
     }
-    window.onscroll.call()
+    window.onscroll.call(window, new Event("scroll"))
 })
 </script>
 

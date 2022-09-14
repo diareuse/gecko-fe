@@ -10,7 +10,8 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
-pre {
+pre,
+.g-mono {
     font-family: 'JetBrains Mono', monospace;
 }
 
