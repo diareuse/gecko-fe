@@ -3,6 +3,7 @@
         <div class="g-action">
             <div class="g-url" v-html="url" />
             <div class="g-divider"></div>
+            <IconDelete class="clickable" @click="emits('delete')" />
             <IconExpand class="clickable animated" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
         </div>
         <Transition name="default">
@@ -25,6 +26,7 @@ import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
 import type { PropType } from "vue";
 import { computed, ref } from "@vue/reactivity";
 import IconExpand from "./icons/IconExpand.vue";
+import IconDelete from "./icons/IconDelete.vue";
 
 const props = defineProps({
     metadata: {
@@ -37,6 +39,9 @@ const props = defineProps({
         default: false
     }
 })
+const emits = defineEmits<{
+    (event: 'delete'): void
+}>()
 const isVisible = ref(props.expanded)
 
 function prettyJson(json: string | null) {

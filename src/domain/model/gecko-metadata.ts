@@ -4,4 +4,6 @@ import type { GeckoResponse } from "./gecko-response";
 export interface GeckoMetadata {
     request: GeckoRequest
     response: GeckoResponse
+    key?: string
+    date?: number
 }

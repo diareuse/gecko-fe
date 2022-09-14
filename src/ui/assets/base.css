@@ -61,6 +61,12 @@ strong {
   cursor: pointer;
 }
 
+svg.clickable {
+  width: 48px !important;
+  height: 48px !important;
+  padding: 12px;
+}
+
 .key {
   color: var(--color-on-surface);
 }

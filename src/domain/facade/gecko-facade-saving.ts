@@ -37,12 +37,22 @@ export default class GeckoFacadeSaving implements GeckoFacade {
         for (const item of items) {
             try {
                 const metadata = await this.facade.getMetadata(item.metadata)
+                metadata.key = item.id
+                metadata.date = item.date
                 results.push(metadata)
             } catch (err) {
                 console.error(err)
             }
         }
         return results
+    }
+
+    async delete(data: GeckoMetadata): Promise<void> {
+        const key = data.key
+        if (!key) {
+            throw new Error("Key was not defined on this sobject")
+        }
+        await this.storage.remove(key)
     }
 
 }

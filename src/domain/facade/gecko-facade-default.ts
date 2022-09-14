@@ -1,7 +1,6 @@
 import type { MetadataAdapter } from "../adapter/metadata-adapter";
 import type { GeckoMetadata } from "../model/gecko-metadata";
 import type { GeckoProcessor } from "../processor/gecko-processor";
-import { promiseOf } from "../tool/promise";
 import type { GeckoFacade, MetadataListProps } from "./gecko-facade";
 
 export class GeckoFacadeDefault implements GeckoFacade {
@@ -26,6 +25,10 @@ export class GeckoFacadeDefault implements GeckoFacade {
 
     async getMetadataList(props: MetadataListProps): Promise<GeckoMetadata[]> {
         return [] // no-op
+    }
+
+    async delete(data: GeckoMetadata): Promise<void> {
+        // no-op
     }
 
 }
