@@ -41,7 +41,7 @@ async function refresh(): Promise<void> {
 onMounted(() => {
     refresh()
     window.onscroll = () => {
-        const isAtBottom = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+        const isAtBottom = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight;
         if (isAtBottom) {
             loadMore()
         }
