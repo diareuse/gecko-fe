@@ -1,9 +1,10 @@
 <template>
     <div>
+        <ToolbarComponent />
         <a @click="loadMore">Refresh</a>
         <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
             :method="item.request.method" :code="item.response.code">
-            <RequestResponseBlock :metadata="item"  :expanded="index == 0" />
+            <RequestResponseBlock :metadata="item" :expanded="index == 0" />
         </GradientCard>
         <a @click="loadMore">Load More</a>
     </div>
@@ -15,6 +16,7 @@ import type { GeckoMetadata } from '@/domain/model/gecko-metadata';
 import { onMounted, ref } from 'vue';
 import GradientCard from '../components/GradientCard.vue';
 import RequestResponseBlock from '../components/RequestResponseBlock.vue';
+import ToolbarComponent from '../components/ToolbarComponent.vue';
 
 const facade = GeckoCompositor.getFacade()
 const items = ref([] as GeckoMetadata[])

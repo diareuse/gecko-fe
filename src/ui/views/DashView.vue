@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ToolbarComponent />
     <h1>Welcome to Gecko!</h1>
     <p>You can paste all the lines which Gecko spewed out below and then press Done!</p>
     <textarea v-model="content" id="append-input-box"></textarea>
@@ -29,6 +30,7 @@ import { GeckoCompositor } from "@/composition/gecko-compositor";
 import { computed } from "@vue/reactivity";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import ToolbarComponent from "../components/ToolbarComponent.vue";
 
 const facade = GeckoCompositor.getFacade()
 const processor = GeckoCompositor.getPartProcessor()
