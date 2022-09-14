@@ -9,11 +9,11 @@
             <div class="g-container" v-if="isVisible">
                 <BodyBlock class="g-body" :headers="metadata.request.headers.join('\n')"
                     :content-type="metadata.request.contentType"
-                    :body="prettyJson(takeUnlessBlank(metadata.request.body)) ?? ''" />
+                    :body="prettyJson(takeUnlessBlank(metadata.request.body)) ?? 'No Content'" />
                 <div class="g-divider"></div>
                 <BodyBlock class="g-body" :headers="metadata.response.headers.join('\n')"
                     :content-type="metadata.response.contentType"
-                    :body="prettyJson(takeUnlessBlank(metadata.response.body)) ?? ''" />
+                    :body="prettyJson(takeUnlessBlank(metadata.response.body)) ?? 'No Content'" />
             </div>
         </Transition>
     </div>
