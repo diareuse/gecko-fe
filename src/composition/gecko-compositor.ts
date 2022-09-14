@@ -8,6 +8,7 @@ import { GeckoProcessorFactoryDefault } from "@/domain/factory/gecko-processor-f
 import type MetadataDao from "@/domain/persistence/dao-metadata";
 import Database from "@/domain/persistence/database";
 import type { GeckoProcessor } from "@/domain/processor/gecko-processor";
+import PartProcessor from "@/domain/processor/part-processor";
 
 export class GeckoCompositor {
 
@@ -33,6 +34,10 @@ export class GeckoCompositor {
 
     static getDatabase(): Database {
         return new Database()
+    }
+
+    public static getPartProcessor(): PartProcessor {
+        return new PartProcessor()
     }
 
 }
