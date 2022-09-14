@@ -22,7 +22,6 @@ import type { GeckoMetadata } from '@/domain/model/gecko-metadata';
 import { onMounted, ref } from 'vue';
 import GradientCard from '../components/GradientCard.vue';
 import RequestResponseBlock from '../components/RequestResponseBlock.vue';
-import ToolbarComponent from '../components/ToolbarComponent.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import IconEmpty from '../components/icons/IconEmpty.vue';
 
@@ -43,7 +42,7 @@ async function loadMore(): Promise<void> {
 }
 
 async function refresh(): Promise<void> {
-    items.value = await facade.getMetadataList({ limit: 1 })
+    items.value = await facade.getMetadataList({ limit: 10 })
     isLoading.value = false
 }
 
@@ -55,7 +54,6 @@ onMounted(() => {
             loadMore()
         }
     }
-    window.onscroll.call(window, new Event("scroll"))
 })
 </script>
 
