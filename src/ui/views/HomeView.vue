@@ -1,9 +1,9 @@
 <template>
     <div>
         <a @click="loadMore">Refresh</a>
-        <GradientCard v-for="item in items" v-bind:key="item.request.url" :method="item.request.method"
-            :code="item.response.code">
-            <RequestResponseBlock :metadata="item" />
+        <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
+            :method="item.request.method" :code="item.response.code">
+            <RequestResponseBlock :metadata="item"  :expanded="index == 0" />
         </GradientCard>
         <a @click="loadMore">Load More</a>
     </div>
@@ -34,5 +34,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.g-rr-item {
+    margin-top: 16px;
+}
 
+.g-rr-item:first-child {
+    margin-top: 0;
+}
 </style>
