@@ -25,6 +25,9 @@ const items = ref([] as GeckoMetadata[])
 const isDepleted = ref(false)
 
 async function loadMore(): Promise<void> {
+    if (isDepleted.value) {
+        return
+    }
     const limit = 10
     const list = await facade.getMetadataList({ offset: items.value.length, limit: limit })
     items.value = [...items.value, ...list]
@@ -37,6 +40,12 @@ async function refresh(): Promise<void> {
 
 onMounted(() => {
     refresh()
+    window.onscroll = () => {
+        const isAtBottom = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+        if (isAtBottom) {
+            loadMore()
+        }
+    }
 })
 </script>
 
