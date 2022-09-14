@@ -47,6 +47,7 @@ h1 {
     margin-bottom: 8px;
     border-radius: 20px;
     position: absolute;
-    background-color: #e27f86;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
 }
 </style>
