@@ -14,7 +14,7 @@ header {
     display: flex;
     width: 100%;
     border-radius: 16px;
-    background-color: var(--color-background-mute);
+    background-color: var(--color-background);
     padding: 16px;
     flex-direction: row;
     align-items: center;
@@ -37,10 +37,10 @@ img {
 
 .g-accent-bg::after {
     content: '';
-    width: calc(100% + 8px);
-    height: calc(100% + 16px);
+    width: calc(100% + 16px);
+    height: calc(100% + 32px);
     z-index: -1;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     border-radius: 20px;
     position: absolute;
     background-color: var(--color-primary);

@@ -81,8 +81,8 @@ textarea {
   min-height: 100%;
   max-height: 100%;
   resize: none;
-  background: var(--color-background);
-  color: var(--color-text);
+  background: var(--color-surface-variant);
+  color: var(--color-on-surface);
   border-radius: 16px;
   border: solid transparent;
   padding: 16px;
@@ -112,7 +112,7 @@ textarea {
   flex-basis: 50%;
   padding: 32px;
   margin-right: 32px;
-  background-color: var(--color-background-mute);
+  background-color: var(--color-surface-variant);
   border-radius: 16px;
 }
 
@@ -125,7 +125,7 @@ textarea {
   top: 0;
   font-size: 12px;
   font-weight: 800;
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   padding: 4px 8px;
   line-height: 16px;
   margin-top: -10px;

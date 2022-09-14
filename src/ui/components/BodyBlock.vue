@@ -36,7 +36,7 @@ const props = defineProps({
 
 <style scoped>
 .g-card {
-    background-color: var(--color-background-mute);
+    background-color: var(--color-surface-variant);
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 16px;
@@ -47,7 +47,7 @@ const props = defineProps({
     top: 0;
     font-size: 16px;
     font-weight: 800;
-    background-color: var(--color-background);
+    background-color: var(--color-surface);
     padding: 4px 8px;
     line-height: 16px;
     margin-top: -10px;

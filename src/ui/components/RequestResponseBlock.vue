@@ -108,7 +108,7 @@ const url = computed(() => {
 
 .g-url {
     font-size: 12px;
-    background: var(--color-background-mute);
+    background: var(--color-surface-variant);
     padding: 8px 16px;
     border-radius: 10000px;
 }

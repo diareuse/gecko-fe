@@ -29,43 +29,52 @@ export default {};
   flex-flow: row;
   gap: 1rem;
 }
+
 .line-segment-content {
   flex-grow: 1;
   flex-basis: 0;
-  background: var(--color-background-mute);
+  background: var(--color-surface-variant);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: var(--color-text);
+  color: var(--color-on-surface);
   min-width: 0;
 }
+
 .line-segment-content:first-of-type {
   margin-right: 1rem;
 }
+
 .line-segment-content:last-of-type {
   margin-left: 1rem;
 }
+
 .line-segment-monospaced {
   font-family: monospace;
 }
+
 .line-segment-metadata {
   flex-grow: 0;
   display: grid;
   min-width: 100px;
 }
+
 .line-segment-metadata * {
   margin: 0 auto;
 }
+
 .line-icon {
   padding: 0.5rem;
   border-width: 0.25rem;
   border-radius: 1rem;
-  border-color: var(--color-background-mute);
+  border-color: var(--color-surface-variant);
   border-style: solid;
 }
+
 span {
   line-height: 1;
-  color: var(--color-text);
+  color: var(--color-on-surface);
 }
+
 .line-name {
   margin-top: 0.5rem;
   font-weight: 600;
