@@ -11,6 +11,8 @@
           Leaving no trace of your home server or data anywhere.
           <sub>Unless like GitHub logs the urls, in that case, yeah it's their fault.</sub>
         </p>
+        <p>Don't believe us? Open your network pane (F12) put in the data and watch requests. Once loaded for the first
+          time, it will work offline too.</p>
         <h6>What's the process?</h6>
         <p>
           All entries are processed accordingly:
