@@ -4,7 +4,7 @@
             <div class="g-url" v-html="url" />
             <div class="g-divider"></div>
             <span class="g-invisible-mobile" v-if="date">{{date}}</span>
-            <IconDelete class="clickable" @click="emits('delete')" />
+            <IconDelete class="clickable animated" @click="emits('delete')" />
             <IconExpand class="clickable animated" @click="isVisible=!isVisible" :class="isVisible ? 'active' : ''" />
         </div>
         <Transition name="default">
