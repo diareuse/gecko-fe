@@ -9,7 +9,6 @@ import type MetadataDao from "@/domain/persistence/dao-metadata";
 import Database from "@/domain/persistence/database";
 import type ColorProcessor from "@/domain/processor/color-processor";
 import ColorProcessorCode from "@/domain/processor/color-processor-code";
-import ColorProcessorColor from "@/domain/processor/color-processor-code";
 import ColorProcessorMethod from "@/domain/processor/color-processor-method";
 import type { GeckoProcessor } from "@/domain/processor/gecko-processor";
 import PartProcessor from "@/domain/processor/part-processor";

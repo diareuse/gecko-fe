@@ -12,10 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import { findProp } from '@vue/compiler-core';
-import { computed } from '@vue/reactivity';
-import type { PropType } from 'vue';
-
 const props = defineProps({
     left: {
         type: String,

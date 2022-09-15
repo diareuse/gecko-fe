@@ -39,7 +39,6 @@ import { GeckoCompositor } from "@/composition/gecko-compositor";
 import { computed } from "@vue/reactivity";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import ToolbarComponent from "../components/ToolbarComponent.vue";
 import ButtonComponent from "../components/ButtonComponent.vue";
 
 const facade = GeckoCompositor.getFacade()
