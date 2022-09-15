@@ -51,6 +51,7 @@ body {
   min-height: 100vh;
   color: var(--color-on-background);
   background: var(--color-background);
+  overflow-y: scroll;
 }
 
 strong {
