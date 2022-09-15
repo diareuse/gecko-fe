@@ -106,7 +106,7 @@ onMounted(() => {
 .requests-enter-from,
 .requests-leave-to {
     opacity: 0;
-    transform: translateY(24px);
+    transform: scaleY(0.95);
 }
 
 .g-empty {
