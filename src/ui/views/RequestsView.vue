@@ -1,20 +1,30 @@
 <template>
     <div class="g-container">
+        <Transition name="requests">
+            <div class="g-empty" v-if="items.length <= 0 && !isLoading">
+                <IconEmpty />
+                <h6>This looks empty 🤔</h6>
+                <p>You can start by clicking on links in logs or personal messages.<br>
+                    Optionally you can enter links on the home page.</p>
+                <ButtonComponent title="Away we go!" @click="$router.push({name:'dash'})" />
+            </div>
+            <span v-else-if="isLoading" />
+            <div class="g-actions" v-else>
+                <h6>Latest Request</h6>
+                <div class="g-divider" />
+                <ButtonComponent title="Add new request" @click="$router.push({name:'dash'})" />
+            </div>
+        </Transition>
         <TransitionGroup name="requests" tag="div" class="g-rr-item">
-            <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
-                :left="item.request.method" :right="item.response.code.toString()"
-                :color-left="colorMethod.getColor(item.request.method)"
-                :color-right="colorCode.getColor(item.response.code)">
-                <MultiMetadataComponent :metadata="item" :expanded="index == 0" @delete="deleteItem(item)" />
-            </GradientCard>
+            <div class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url">
+                <h6 v-if="index == 1">Older Requests…</h6>
+                <GradientCard :left="item.request.method" :right="item.response.code.toString()"
+                    :color-left="colorMethod.getColor(item.request.method)"
+                    :color-right="colorCode.getColor(item.response.code)">
+                    <MultiMetadataComponent :metadata="item" :expanded="index == 0" @delete="deleteItem(item)" />
+                </GradientCard>
+            </div>
         </TransitionGroup>
-        <div class="g-empty" v-if="items.length <= 0 && !isLoading">
-            <IconEmpty />
-            <h6>This looks empty 🤔</h6>
-            <p>You can start by clicking on links in logs or personal messages.<br>
-                Optionally you can enter links on the home page.</p>
-            <ButtonComponent title="Away we go!" href="/gecko/" />
-        </div>
     </div>
 </template>
 
@@ -72,6 +82,11 @@ onMounted(() => {
     width: 100%;
 }
 
+.g-rr-item>h6 {
+    margin-bottom: 16px;
+    padding: 0 16px;
+}
+
 .g-container {
     display: flex;
     flex-direction: column;
@@ -108,5 +123,19 @@ onMounted(() => {
 .g-empty>* {
     flex-wrap: wrap;
     margin-top: 24px;
+}
+
+.g-actions {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 32px;
+    padding: 0 16px;
+}
+
+.g-divider {
+    flex-grow: 1;
+    min-width: 24px;
 }
 </style>
