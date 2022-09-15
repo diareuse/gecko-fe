@@ -1,6 +1,6 @@
 :root {
   --color-primary: #e27f86;
-  --color-on-primary: black;
+  --color-on-primary: #fff;
 
   --color-string: #6bb200;
   --color-boolean: #fc8f00;
