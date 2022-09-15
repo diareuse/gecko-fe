@@ -3,7 +3,7 @@
         <TransitionGroup name="requests" tag="div" class="g-rr-item">
             <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
                 :method="item.request.method" :code="item.response.code">
-                <RequestResponseBlock :metadata="item" :expanded="index == 0" @delete="deleteItem(item)" />
+                <MultiMetadataComponent :metadata="item" :expanded="index == 0" @delete="deleteItem(item)" />
             </GradientCard>
         </TransitionGroup>
         <div class="g-empty" v-if="items.length <= 0 && !isLoading">
@@ -21,7 +21,7 @@ import { GeckoCompositor } from '@/composition/gecko-compositor';
 import type { GeckoMetadata } from '@/domain/model/gecko-metadata';
 import { onMounted, ref } from 'vue';
 import GradientCard from '../components/GradientCard.vue';
-import RequestResponseBlock from '../components/RequestResponseBlock.vue';
+import MultiMetadataComponent from '../components/MultiMetadataComponent.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import IconEmpty from '../components/icons/IconEmpty.vue';
 
