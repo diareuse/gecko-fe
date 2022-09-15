@@ -73,6 +73,7 @@ pre {
     font-size: 14px;
     line-height: 18px;
     overflow-y: scroll;
+    overflow-x: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
