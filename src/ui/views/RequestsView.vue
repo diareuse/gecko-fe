@@ -2,7 +2,9 @@
     <div class="g-container">
         <TransitionGroup name="requests" tag="div" class="g-rr-item">
             <GradientCard class="g-rr-item" v-for="(item, index) in items" v-bind:key="item.request.url"
-                :method="item.request.method" :code="item.response.code">
+                :left="item.request.method" :right="item.response.code.toString()"
+                :color-left="colorMethod.getColor(item.request.method)"
+                :color-right="colorCode.getColor(item.response.code)">
                 <MultiMetadataComponent :metadata="item" :expanded="index == 0" @delete="deleteItem(item)" />
             </GradientCard>
         </TransitionGroup>
@@ -26,6 +28,9 @@ import ButtonComponent from '../components/ButtonComponent.vue';
 import IconEmpty from '../components/icons/IconEmpty.vue';
 
 const facade = GeckoCompositor.getFacade()
+const colorMethod = GeckoCompositor.getMethodColor()
+const colorCode = GeckoCompositor.getCodeColor()
+
 const items = ref([] as GeckoMetadata[])
 const isDepleted = ref(false)
 const isLoading = ref(true)

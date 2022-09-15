@@ -7,8 +7,14 @@ import type { GeckoProcessorFactory } from "@/domain/factory/gecko-processor-fac
 import { GeckoProcessorFactoryDefault } from "@/domain/factory/gecko-processor-factory-default";
 import type MetadataDao from "@/domain/persistence/dao-metadata";
 import Database from "@/domain/persistence/database";
+import type ColorProcessor from "@/domain/processor/color-processor";
+import ColorProcessorCode from "@/domain/processor/color-processor-code";
+import ColorProcessorColor from "@/domain/processor/color-processor-code";
+import ColorProcessorMethod from "@/domain/processor/color-processor-method";
 import type { GeckoProcessor } from "@/domain/processor/gecko-processor";
 import PartProcessor from "@/domain/processor/part-processor";
+
+export declare type ColorProcessorType = "method" | "code"
 
 export class GeckoCompositor {
 
@@ -38,6 +44,14 @@ export class GeckoCompositor {
 
     public static getPartProcessor(): PartProcessor {
         return new PartProcessor()
+    }
+
+    public static getMethodColor(): ColorProcessor<string> {
+        return new ColorProcessorMethod()
+    }
+
+    public static getCodeColor(): ColorProcessor<number> {
+        return new ColorProcessorCode()
     }
 
 }

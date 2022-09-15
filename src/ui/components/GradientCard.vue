@@ -1,9 +1,9 @@
 <template>
-    <div class="g-background" :style="`--g-card-method: ${methodColor}; --g-card-code: ${codeColor}`">
-        <div class="g-overhead">
-            <span class="g-method">{{method}}</span>
+    <div class="g-background" :style="`--g-card-left: ${colorLeft}; --g-card-right: ${colorRight}`">
+        <div class="g-overhead" v-if="left || right">
+            <span class="g-left" v-if="left">{{left}}</span>
             <div />
-            <span class="g-code">{{code}}</span>
+            <span class="g-right" v-if="right">{{right}}</span>
         </div>
         <div class="g-content">
             <slot></slot>
@@ -14,46 +14,36 @@
 <script lang="ts" setup>
 import { findProp } from '@vue/compiler-core';
 import { computed } from '@vue/reactivity';
+import type { PropType } from 'vue';
 
 const props = defineProps({
-    method: {
+    left: {
         type: String,
-        required: true
+        required: false,
+        default: null
     },
-    code: {
-        type: Number,
-        required: true
+    right: {
+        type: String,
+        required: false,
+        default: null
+    },
+    colorLeft: {
+        type: String,
+        required: false,
+        default: "var(--color-primary)"
+    },
+    colorRight: {
+        type: String,
+        required: false,
+        default: "var(--color-primary)"
     }
-})
-
-const methodColor = computed(() => {
-    switch (props.method.toLowerCase()) {
-        case "get": return "#89D1B6"
-        case "head": return "#5658D3"
-        case "post": return "#4E9FFA"
-        case "put": return "#9EA4B4"
-        case "delete": return "#FD7D78"
-        case "connect": return "#D68EF0"
-        case "options": return "#E2CA8C"
-        case "trace": return "#91E074"
-        case "patch": return "#9F7685"
-        default: return "transparent"
-    }
-})
-
-const codeColor = computed(() => {
-    if (props.code >= 200 && props.code <= 299) return "#B9F6CA"
-    else if (props.code >= 300 && props.code <= 399) return "#84FFFF"
-    else if (props.code >= 400 && props.code <= 499) return "#FFE57F"
-    else if (props.code >= 500 && props.code <= 599) return "#FF8A80"
-    else return "black"
 })
 </script>
 
 <style scoped>
 .g-background {
     border-radius: 20px;
-    background: linear-gradient(90deg, var(--g-card-method), var(--g-card-code) 100%);
+    background: linear-gradient(90deg, var(--g-card-left), var(--g-card-right) 100%);
     padding: 8px;
 }
 
@@ -61,6 +51,7 @@ const codeColor = computed(() => {
     display: flex;
     flex-direction: row;
     padding: 0 16px;
+    min-height: 16px;
 }
 
 .g-overhead>div {
@@ -73,13 +64,13 @@ const codeColor = computed(() => {
     margin-top: 8px;
 }
 
-.g-method {
+.g-left {
     font-weight: 800;
     color: black;
     mix-blend-mode: var(--blend-mode);
 }
 
-.g-code {
+.g-right {
     font-weight: 800;
     color: black;
     mix-blend-mode: var(--blend-mode);
