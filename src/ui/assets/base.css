@@ -61,6 +61,11 @@ strong {
   cursor: pointer;
 }
 
+.clickable:hover {
+  filter: drop-shadow(0 0 8px var(--color-primary));
+  transform: scale(0.95);
+}
+
 svg.clickable {
   width: 48px !important;
   height: 48px !important;
@@ -88,5 +93,5 @@ svg.clickable {
 }
 
 .animated {
-  transition: all .5s ease-in-out;
+  transition: all .25s ease-in-out;
 }

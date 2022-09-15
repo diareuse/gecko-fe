@@ -1,5 +1,5 @@
 <template>
-    <a :class="size">{{title}}</a>
+    <a :class="size" class="clickable animated">{{title}}</a>
 </template>
 
 <script lang="ts" setup>
@@ -22,7 +22,6 @@ const props = defineProps({
 <style scoped>
 a {
     font-weight: 800;
-    cursor: pointer;
     border-radius: 1000px;
     background-color: var(--color-primary);
     color: var(--color-on-primary);
