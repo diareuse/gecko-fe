@@ -8,7 +8,7 @@
                     Optionally you can enter links on the home page.</p>
                 <ButtonComponent title="Away we go!" @click="$router.push({name:'dash'})" />
             </div>
-            <span v-else-if="isLoading" />
+            <span class="g-gone" v-else-if="isLoading" />
             <div class="g-actions" v-else>
                 <h6>Latest Request</h6>
                 <div class="g-divider" />

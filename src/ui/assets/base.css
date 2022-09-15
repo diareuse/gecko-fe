@@ -96,3 +96,7 @@ svg.clickable {
 .animated {
   transition: all .25s ease-in-out;
 }
+
+.g-gone {
+  display: none;
+}
