@@ -9,11 +9,11 @@
         </div>
         <Transition name="default">
             <div class="g-container g-flex-row-mobile" v-if="isVisible">
-                <BodyBlock class="g-body" title="Request" :headers="metadata.request.headers.join('\n')"
+                <MetadataComponent class="g-body" title="Request" :headers="metadata.request.headers.join('\n')"
                     :content-type="metadata.request.contentType"
                     :body="prettyJson(takeUnlessBlank(metadata.request.body)) ?? 'No Content'" />
                 <div class="g-divider"></div>
-                <BodyBlock class="g-body" title="Response" :headers="metadata.response.headers.join('\n')"
+                <MetadataComponent class="g-body" title="Response" :headers="metadata.response.headers.join('\n')"
                     :content-type="metadata.response.contentType"
                     :body="prettyJson(takeUnlessBlank(metadata.response.body)) ?? 'No Content'" />
             </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import BodyBlock from "./BodyBlock.vue";
+import MetadataComponent from "./MetadataComponent.vue";
 import type { GeckoMetadata } from "@/domain/model/gecko-metadata";
 import type { PropType } from "vue";
 import { computed, ref } from "@vue/reactivity";
