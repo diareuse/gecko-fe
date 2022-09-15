@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="g-component">
         <h5 class="g-visible-mobile">{{title}}</h5>
 
         <div class="g-card">
@@ -41,6 +41,10 @@ const props = defineProps({
 </script>
 
 <style scoped>
+.g-component {
+    overflow-y: hidden;
+}
+
 .g-card {
     background-color: var(--color-surface-variant);
     border-radius: 12px;
