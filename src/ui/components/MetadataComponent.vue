@@ -72,8 +72,8 @@ const props = defineProps({
 pre {
     font-size: 14px;
     line-height: 18px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
